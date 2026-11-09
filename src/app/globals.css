@@ -1,0 +1,90 @@
+@import "tailwindcss";
+
+:root {
+  --background: #EBEDFF;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: #010B65;
+  --color-secondary: #EBEDFF;
+  --color-tertiary: #CCD1FE;
+  --color-accent: #9AA4FE;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-titillium), Arial, Helvetica, sans-serif;
+}
+
+/* SHAKE ANIMATION - Used for error feedback on OTP inputs */
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  10%, 30%, 50%, 70%, 90% {
+    transform: translateX(-4px);
+  }
+  20%, 40%, 60%, 80% {
+    transform: translateX(4px);
+  }
+}
+
+.shake {
+  animation: shake 0.5s;
+}
+
+/* PULSE ANIMATION - Used when OTP timer is below 60 seconds */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+.pulse {
+  animation: pulse 1s infinite;
+}
+
+/* CHECKMARK ANIMATION - Used when OTP verification is successful */
+@keyframes checkmark {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.checkmark-animate {
+  animation: checkmark 0.4s ease-out;
+}
+
+/* ACCESSIBILITY - Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .shake,
+  .pulse,
+  .checkmark-animate {
+    animation: none;
+  }
+}
+
+/* Button hover effects */
+.btn-hover-lift {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-hover-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -5px rgba(204, 209, 254, 0.3);
+}
