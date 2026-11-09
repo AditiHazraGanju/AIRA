@@ -1,0 +1,24 @@
+{
+  "name": "healthtalk-relay",
+  "version": "0.1.0",
+  "description": "WebSocket relay between the HealthTalk (Aira) chatbot and the Gemini Live API on Vertex AI.",
+  "type": "module",
+  "main": "src/server.js",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "test:client": "node test/client.js"
+  },
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "@google/genai": "^2.25.0",
+    "dotenv": "^16.6.1",
+    "jsonwebtoken": "^9.0.3",
+    "wav": "^1.0.2",
+    "ws": "^8.22.0"
+  }
+}
