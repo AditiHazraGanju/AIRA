@@ -2,6 +2,8 @@
 
 Aira is Saathealth's voice-first, multilingual AI health assistant (English, Hindi, Marathi and Bengali). This repository is the web front end, built with Next.js.
 
+> **Technical documentation is available here - [Document](./Document)**
+
 Aira works with two other services:
 
 - **saathi-laravel-api**: login (mobile number and OTP), user profile, conversation history and the start pitch.
