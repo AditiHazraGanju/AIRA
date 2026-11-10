@@ -1,0 +1,11 @@
+{
+    "name": "HealthTalk",
+    "alias": "healthtalk",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\HealthTalk\\Providers\\HealthTalkServiceProvider"
+    ],
+    "files": []
+}

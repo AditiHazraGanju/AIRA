@@ -1,0 +1,11 @@
+{
+    "name": "SHUserManagement",
+    "alias": "shusermanagement",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\SHUserManagement\\Providers\\SHUserManagementServiceProvider"
+    ],
+    "files": []
+}

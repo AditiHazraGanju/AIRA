@@ -1,0 +1,30 @@
+{
+    "name": "nwidart/healthtalk",
+    "description": "",
+    "authors": [
+        {
+            "name": "Nicolas Widart",
+            "email": "n.widart@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [],
+            "aliases": {
+
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\HealthTalk\\": "",
+            "Modules\\HealthTalk\\Database\\Factories\\": "database/factories/",
+            "Modules\\HealthTalk\\Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Modules\\HealthTalk\\Tests\\": "tests/"
+        }
+    }
+}
