@@ -1,6 +1,6 @@
 # Aira: Technical Setup Guide
 
-Nov 10, 2026 · @TCM STUNNER
+Nov 10, 2026
 
 ## Overview
 
@@ -24,17 +24,17 @@ The web app and the relay act on the user's behalf with the user's token; the ad
 All four projects live in one GitHub repository, one project per branch. The branches share no history, so check out the branch you need, or clone it on its own:
 
 ```bash
-git clone -b <branch> --single-branch <repository-url> <folder>
+git clone -b <branch> --single-branch https://github.com/AditiHazraGanju/AIRA.git <folder>
 ```
 
 | Branch | Project | Stack | Local port | Run command |
 | --- | --- | --- | --- | --- |
-| `aira` | Aira web app | Next.js 16, React 19, Node.js 20+ | 3000 | `npm run dev` |
-| `healthtalk-relay` | WebSocket relay to Gemini Live | Node.js 20+ | 8080 | `npm start` |
-| `saathi-laravel-api` | Aira API | Laravel 12, PHP 8.4, PostgreSQL + pgvector | 8000 | `php artisan serve --port=8000` |
-| `saathi-laravel-admin` | Aira Admin panel | Laravel 12, PHP 8.4, Vite | 8001 | `php artisan serve --port=8001` |
+| `aira-frontend` | Aira web app | Next.js 16, React 19, Node.js 20+ | 3000 | `npm run dev` |
+| `aira-relay` | WebSocket relay to Gemini Live | Node.js 20+ | 8080 | `npm start` |
+| `aira-api` | Aira API | Laravel 12, PHP 8.4, PostgreSQL + pgvector | 8000 | `php artisan serve --port=8000` |
+| `aira-admin` | Aira Admin panel | Laravel 12, PHP 8.4, Vite | 8001 | `php artisan serve --port=8001` |
 
-The branch names above follow the project folder names; change this table if the repository uses others. Each branch has its own `README.md` and a `.env.example` that documents every setting. No branch contains real keys or passwords: every secret is a `YOUR_*` placeholder.
+The repository is [github.com/AditiHazraGanju/AIRA](https://github.com/AditiHazraGanju/AIRA). Each branch has its own `README.md` and a `.env.example` that documents every setting. No branch contains real keys or passwords: every secret is a `YOUR_*` placeholder.
 
 ## Prerequisites
 
@@ -69,7 +69,7 @@ Install the software below and collect the accounts and keys before you start; t
 | `ADMIN_API_KEY` | `openssl rand -hex 32` | API and Admin |
 | `APP_KEY` (one each) | `php artisan key:generate` | Not shared. The API's must stay the same once users exist. |
 
-## Aira API (`saathi-laravel-api`)
+## Aira API (branch `aira-api`)
 
 The API owns the database and every piece of business logic; set it up first, because the other three projects depend on it.
 
@@ -97,7 +97,7 @@ It answers three kinds of caller:
 1. Check out the branch and install the PHP packages.
 
    ```bash
-   git clone -b saathi-laravel-api --single-branch <repository-url> aira-api
+   git clone -b aira-api --single-branch https://github.com/AditiHazraGanju/AIRA.git aira-api
    cd aira-api
    composer install
    ```
@@ -144,7 +144,7 @@ Content Library indexing runs right after the HTTP response, in the same PHP pro
 | `VERTEX_LOCATION`, `VERTEX_EMBEDDING_MODEL`, `VERTEX_EXTRACTION_MODEL` | Vertex AI region and models. The embedding model must match the relay's. | `asia-south1`, `gemini-embedding-001`, `gemini-2.5-flash` |
 | `TCMLOGGER_*` | Optional remote logging. `TCMLOGGER_DEBUG=false` turns it off. |  |
 
-## Aira Admin (`saathi-laravel-admin`)
+## Aira Admin (branch `aira-admin`)
 
 The admin panel is where the Saathealth team controls what Aira says. It has no login, so it must never be reachable from the public internet.
 
@@ -165,7 +165,7 @@ The admin panel is where the Saathealth team controls what Aira says. It has no 
 1. Check out the branch and install the PHP and JavaScript packages.
 
    ```bash
-   git clone -b saathi-laravel-admin --single-branch <repository-url> aira-admin
+   git clone -b aira-admin --single-branch https://github.com/AditiHazraGanju/AIRA.git aira-admin
    cd aira-admin
    composer install
    npm install
@@ -198,7 +198,7 @@ There is nothing to migrate or seed: the tables come from the API's `aira_schema
 | `APP_VERSION` | Version shown in the footer | `1.0.0` |
 | `TCMLOGGER_*` | Optional remote logging. `TCMLOGGER_DEBUG=false` turns it off. |  |
 
-## healthtalk-relay
+## Relay server (branch `aira-relay`)
 
 The relay carries every live conversation between the browser and Gemini Live, so it must run as a long-lived Node.js process that can hold WebSocket connections open.
 
@@ -218,8 +218,8 @@ Gemini Live runs in `us-central1`, because no Live model is served from `asia-so
 1. Check out the branch and install the packages.
 
    ```bash
-   git clone -b healthtalk-relay --single-branch <repository-url> healthtalk-relay
-   cd healthtalk-relay
+   git clone -b aira-relay --single-branch https://github.com/AditiHazraGanju/AIRA.git aira-relay
+   cd aira-relay
    npm install
    ```
 2. Create the environment file and fill in every `YOUR_*` value.
@@ -252,7 +252,7 @@ Gemini Live runs in `us-central1`, because no Live model is served from `asia-so
 
 The relay's `README.md` documents the WebSocket message format and close codes for anyone working on the client.
 
-## Aira web app (`aira`)
+## Aira web app (branch `aira-frontend`)
 
 The web app is the only part users see. It needs two URLs, the API's and the relay's, and both are built into the JavaScript at build time.
 
@@ -273,8 +273,8 @@ The interface is translated into English, Hindi, Marathi and Bengali (`src/local
 1. Check out the branch and install the packages.
 
    ```bash
-   git clone -b aira --single-branch <repository-url> aira
-   cd aira
+   git clone -b aira-frontend --single-branch https://github.com/AditiHazraGanju/AIRA.git aira-frontend
+   cd aira-frontend
    npm ci
    ```
 2. Create the environment file and fill in every `YOUR_*` value.
